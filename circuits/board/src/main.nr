@@ -34,7 +34,7 @@ fn check_for_collision(lengths: [u4; 5], ships: [Field; 15]) {
             }
         };
     };
-    constrain collisions == 0;
+    assert(collisions == 0);
 }
 
 //
@@ -48,15 +48,15 @@ fn check_for_collision(lengths: [u4; 5], ships: [Field; 15]) {
 //
 fn check_ship_ranges(length: u4, x: u4, y: u4, z: u4) {
         // Constrain z to binary (0 or 1)
-        constrain z <= 1;
+        assert(z <= 1);
 
         // Ensure bounds aren't exceeded in vertical or horizontal orientation
         if z == 1 {
-            constrain y + length <= 10;
-            constrain x < 10;
+            assert(y + length <= 10);
+            assert(x < 10);
         } else {
-            constrain x + length <= 10;
-            constrain y < 10;
+            assert(x + length <= 10);
+            assert(y < 10);
         }
 }
 
@@ -95,5 +95,5 @@ fn main(hash: pub Field, ships: [Field; 15]) {
     check_for_collision(lengths, ships);
     // Check integrity of ship hash
     let computed_hash = std::hash::pedersen(ships);
-    constrain hash == computed_hash[0];
+    assert(hash == computed_hash[0]);
 }

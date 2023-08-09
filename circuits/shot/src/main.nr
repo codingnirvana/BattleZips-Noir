@@ -41,14 +41,14 @@ fn main(hash: pub Field, hit: pub u1, ships: [Field; 15], shot: pub [Field; 2]) 
     // Lengths of all ships
    let lengths: [u4; 5] = [5, 4, 3, 3, 2];
    // Ensure shots within board boundaries
-   constrain shot[0] as u4 < 10;
-   constrain shot[1] as u4 < 10;
+   assert(shot[0] as u4 < 10);
+   assert(shot[1] as u4 < 10);
 
    // Ensure computed hash is equal to provided hash
    let computed_hash = std::hash::pedersen(ships);
-   constrain hash == computed_hash[0];
+   assert(hash == computed_hash[0]);
 
     // Check whether shot coordinate is a hit or not and then contrain against hit declaration
    let hits = check_for_hit(lengths, ships, shot);
-   constrain hits as u1 == hit;
+   assert(hits as u1 == hit);
 }

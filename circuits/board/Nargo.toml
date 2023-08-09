@@ -1,4 +1,6 @@
 [package]
+name = "board"
+type = "bin"
 authors = ["exp.table"]
 compiler_version = "0.1"
 
